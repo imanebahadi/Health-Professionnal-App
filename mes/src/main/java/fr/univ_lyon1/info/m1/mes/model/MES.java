@@ -40,6 +40,7 @@ public class MES {
         final HealthProfessional w = new HealthProfessional("Dr. Who", this);
         final HealthProfessional s = new Dentist("Dr. Strange", this);
         new Homeopath("Dr. Hahnemann", this);
+        new NonSpecialise("Dr. David", this);
         a.addPrescription(w, "One apple a day");
         a.addPrescription(w, "Sport twice a week");
         b.addPrescription(w, "Whatever placebo, you're not sick");
