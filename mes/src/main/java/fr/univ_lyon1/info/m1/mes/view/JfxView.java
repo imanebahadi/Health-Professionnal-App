@@ -66,15 +66,25 @@ public class JfxView {
         final Label ssIDL = new Label("ssID: ");
         final TextField ssIDT = new TextField();
         final Button newP = new Button("New");
+
         patients.getChildren().addAll(
                 new HBox(nameL, nameT),
                 new HBox(ssIDL, ssIDT),
                 newP);
+        
         newP.setOnAction(new EventHandler<ActionEvent>() {
+            /**
+             * @param event
+             */
             @Override
             public void handle(final ActionEvent event) {
-                EasyAlert.alert("Action not implemented yet.");
+                
+                final Patient pat = mes.createPatient(nameT.getText(), ssIDT.getText()); 
+                final PatientView newhpv = new PatientView(pat); //crée un panel pr un patient
+                patients.getChildren().add(newhpv.asPane()); //colle ce panel au bouton New
             }
         });
+
+    
     }
 }
