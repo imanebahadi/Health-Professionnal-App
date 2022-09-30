@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Patient.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">mes</a> &gt; <a href="index.source.html" class="el_package">fr.univ_lyon1.info.m1.mes.model</a> &gt; <span class="el_source">Patient.java</span></div><h1>Patient.java</h1><pre class="source lang-java linenums">package fr.univ_lyon1.info.m1.mes.model;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Patient {
+<span class="fc" id="L8">    private final List&lt;Prescription&gt; prescriptions = new ArrayList&lt;&gt;();</span>
+    private final String name;
+    private final String ssID;
+
+    public List&lt;Prescription&gt; getPrescriptions(final HealthProfessional hp) {
+<span class="fc" id="L13">        return prescriptions.stream()</span>
+<span class="pc bpc" id="L14" title="1 of 2 branches missed.">                .filter(p -&gt; p.getHealthProfessional() == hp)</span>
+<span class="fc" id="L15">                .collect(Collectors.toList());</span>
+    }
+
+    public List&lt;Prescription&gt; getPrescriptions() {
+<span class="nc" id="L19">        return prescriptions;</span>
+    }
+
+<span class="fc" id="L22">    public Patient(final String name, final String ssID) {</span>
+<span class="fc" id="L23">        this.name = name;</span>
+<span class="fc" id="L24">        this.ssID = ssID;</span>
+<span class="fc" id="L25">    }</span>
+
+    public void addPrescription(final HealthProfessional hp, final String content) {
+<span class="fc" id="L28">        prescriptions.add(new Prescription(hp, content));</span>
+<span class="fc" id="L29">    }</span>
+
+    public void removePrescription(final Prescription p) {
+<span class="nc" id="L32">        prescriptions.remove(p);</span>
+<span class="nc" id="L33">    }</span>
+
+    public String getName() {
+<span class="nc" id="L36">        return name;</span>
+    }
+
+    public String getSSID() {
+<span class="nc" id="L40">        return ssID;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -3,11 +3,9 @@ package fr.univ_lyon1.info.m1.mes.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import fr.univ_lyon1.info.m1.mes.model.Dentist;
-import fr.univ_lyon1.info.m1.mes.model.Homeopath;
-import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
-import fr.univ_lyon1.info.m1.mes.model.Patient;
-import fr.univ_lyon1.info.m1.mes.model.Prescription;
+
+import fr.univ_lyon1.info.m1.mes.Controllers.Controller;
+import fr.univ_lyon1.info.m1.mes.model.*;
 import fr.univ_lyon1.info.m1.mes.utils.EasyAlert;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,13 +16,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
-public class HealthProfessionalView {
+public class HealthProfessionalView implements PrescriptionObserver {
     private final VBox pane = new VBox();
     private HealthProfessional healthProfessional;
     private String selectedPatientSSID;
     private final VBox prescriptions = new VBox();
 
-        public HealthProfessionalView(final HealthProfessional hp) {
+    private Patient patient=null;
+
+    private final Controller controller;
+
+    public HealthProfessionalView(final HealthProfessional hp, Controller controller) {
+        this.controller=controller;
+
         pane.setStyle("-fx-border-color: gray;\n"
                 + "-fx-border-insets: 5;\n"
                 + "-fx-padding: 5;\n"
@@ -45,7 +49,14 @@ public class HealthProfessionalView {
                     return; // Do nothing
                 }
                 selectedPatientSSID = text;
-                showPrescriptions();
+                Patient lastPatient=patient;
+                patient = controller.findPatient(healthProfessional,selectedPatientSSID);
+                if (patient!=null){
+                    controller.registerViewObserver(HealthProfessionalView.this,patient);
+                    if (lastPatient!=null)
+                        controller.unregisterViewObserver(HealthProfessionalView.this,lastPatient);
+                    showPrescriptions();
+                }
                 t.setText("");
                 t.requestFocus();
             }
@@ -72,15 +83,8 @@ public class HealthProfessionalView {
                 parent.prescribe(text);
             }
         };
-        // TODO: someone wrote some business logic within the view :-\
-        List<String> predefPrescr = new ArrayList<>();
-        predefPrescr.add("Paracetamol");
-        if (hp instanceof Dentist) {
-            predefPrescr.add("Don't eat for one hour");
-        } else if (hp instanceof Homeopath) {
-            predefPrescr.add("Natrum Muriaticum 30CH");
-            predefPrescr.add("Sucre 200K");
-        }
+
+        List<String> predefPrescr = controller.getPredefMedicines(hp);
         for (final String p : predefPrescr) {
             final Button predefPrescrB = new Button(p);
             predefPrescrB.setOnAction(new EventHandler<ActionEvent>() {
@@ -96,27 +100,29 @@ public class HealthProfessionalView {
     }
     
     void prescribe(final String prescription) {
-        if (selectedPatientSSID == null) {
+        if (selectedPatientSSID==null)
+            return;
+            if (!controller.addPrescription(healthProfessional,selectedPatientSSID,prescription))
+        {
             EasyAlert.alert("Please select a patient first");
             return;
         }
-        healthProfessional
-            .getPatient(selectedPatientSSID)
-            .addPrescription(healthProfessional, prescription);
         showPrescriptions();
     }
 
     void showPrescriptions() {
         prescriptions.getChildren().clear();
-        Patient p = healthProfessional.getPatient(selectedPatientSSID);
-        if (p == null) {
+
+        if (patient == null) {
             prescriptions.getChildren().add(new Label(
                 "Use search above to see prescriptions"));
             return;
         }
         prescriptions.getChildren().add(new Label(
-            "Prescriptions for " + p.getName()));
-        for (final Prescription pr : p.getPrescriptions(healthProfessional)) {
+            "Prescriptions for " + patient.getName()));
+
+        List<Prescription> listPrescriptions = controller.getPatientPrescriptionsByHP(patient,healthProfessional);
+        for (final Prescription pr : listPrescriptions) {
             final HBox pView = new HBox();
             final Label content = new Label(
                     "- " + pr.getContent());
@@ -124,7 +130,7 @@ public class HealthProfessionalView {
             removeBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(final ActionEvent event) {
-                    p.removePrescription(pr);
+                    controller.removePrescription(patient,pr);
                     pView.getChildren().remove(content);
                     pView.getChildren().remove(removeBtn);
                 }
@@ -135,8 +141,17 @@ public class HealthProfessionalView {
         }
     }
 
+    private void refreshHPPrescriptions(){
+        if (selectedPatientSSID!=null) showPrescriptions();
+    }
+
     public Pane asPane() {
         return pane;
+    }
+
+    @Override
+    public void update() {
+        refreshHPPrescriptions();
     }
 
 }

@@ -1,7 +1,7 @@
 package fr.univ_lyon1.info.m1.mes.view;
 
+import fr.univ_lyon1.info.m1.mes.Controllers.Controller;
 import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
-import fr.univ_lyon1.info.m1.mes.model.MES;
 import fr.univ_lyon1.info.m1.mes.model.Patient;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -15,16 +15,29 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class JfxView {
     private Pane patients = new VBox();
+
+    private Pane patientForm = new VBox();
+
     private Pane healthPro = new VBox();
-    private final MES mes;
+
+    private List<PatientView> listPatientView;
+    private List<HealthProfessionalView> listHPView;
+
+    private Controller controller;
     /**
      * Create the main view of the application.
      */
-    public JfxView(final MES mes, final Stage stage,
-    final int width, final int height) {
-        this.mes = mes;
+    public JfxView(final Controller controller, final Stage stage,
+                   final int width, final int height) {
+        this.controller = controller;
+        controller.attachToJfxView(this);
+        listPatientView=new ArrayList<>();
+        listHPView = new ArrayList<>();
         // Name of window
         stage.setTitle("Mon Espace Santé");
 
@@ -35,7 +48,7 @@ public class JfxView {
         
         createHPWidget();
         root.getChildren().add(healthPro);
-        
+
         HBox.setHgrow(patients, Priority.SOMETIMES);
         HBox.setHgrow(healthPro, Priority.ALWAYS);
 
@@ -47,18 +60,20 @@ public class JfxView {
     }
 
     private Pane createHPWidget() {
-        for (HealthProfessional p : mes.getHealthProfessional()) {
-            HealthProfessionalView hpv = new HealthProfessionalView(p);
+        for (HealthProfessional p : controller.getListHP()) {
+            HealthProfessionalView hpv = new HealthProfessionalView(p,controller);
+            listHPView.add(hpv);
             healthPro.getChildren().add(hpv.asPane());
         }
         return healthPro;
     }
 
     private void createPatientsWidget() {
-        patients.getChildren().clear();        
-            for (Patient p : mes.getPatients()) {
-            final PatientView hpv = new PatientView(p);
-            patients.getChildren().add(hpv.asPane());
+        patients.getChildren().clear();
+            for (Patient p : controller.getListPatients()) {
+            final PatientView patientView = new PatientView(p,controller);
+            listPatientView.add(patientView);
+            patients.getChildren().add(patientView.asPane());
         }
         final Label nameL = new Label("Name: ");
         final TextField nameT = new TextField();
@@ -77,13 +92,18 @@ public class JfxView {
              */
             @Override
             public void handle(final ActionEvent event) {
-                
-                final Patient pat = mes.createPatient(nameT.getText(), ssIDT.getText()); 
-                final PatientView newhpv = new PatientView(pat); //crée un panel pr un patient
-                patients.getChildren().add(newhpv.asPane()); //colle ce panel au bouton New
+                final Patient pat = controller.addPatient(nameT.getText(), ssIDT.getText());
+                final PatientView patientView = new PatientView(pat,controller); //crée un panel pr un patient
+                listPatientView.add(patientView);
             }
         });
 
-    
+    }
+
+
+    public void addPatientView(Patient patient){
+        final PatientView patientView = new PatientView(patient,controller);
+        listPatientView.add(patientView);
+        patients.getChildren().add(patientView.asPane());
     }
 }

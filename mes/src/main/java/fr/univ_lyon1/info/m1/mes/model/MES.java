@@ -1,12 +1,11 @@
 package fr.univ_lyon1.info.m1.mes.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 public class MES {
+
+
     private final List<HealthProfessional> healthProfessionals = new ArrayList<>();
     
     private final Map<String, Patient> registry = new HashMap<>();
@@ -47,4 +46,7 @@ public class MES {
         b.addPrescription(s, "Snake oil");
 
     }
+
+
+
 }
