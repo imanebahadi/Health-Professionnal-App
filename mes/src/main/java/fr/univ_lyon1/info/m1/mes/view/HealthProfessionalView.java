@@ -4,7 +4,7 @@ package fr.univ_lyon1.info.m1.mes.view;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.univ_lyon1.info.m1.mes.Controllers.Controller;
+import fr.univ_lyon1.info.m1.mes.Controllers.*;
 import fr.univ_lyon1.info.m1.mes.model.*;
 import fr.univ_lyon1.info.m1.mes.utils.EasyAlert;
 import javafx.event.ActionEvent;
@@ -15,6 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.ComboBox;
+import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 
 public class HealthProfessionalView implements PrescriptionObserver {
     private final VBox pane = new VBox();
@@ -22,12 +25,12 @@ public class HealthProfessionalView implements PrescriptionObserver {
     private String selectedPatientSSID;
     private final VBox prescriptions = new VBox();
 
-    private Patient patient=null;
+    private Patient patient = null;
 
     private final Controller controller;
 
     public HealthProfessionalView(final HealthProfessional hp, Controller controller) {
-        this.controller=controller;
+        this.controller = controller;
 
         pane.setStyle("-fx-border-color: gray;\n"
                 + "-fx-border-insets: 5;\n"
@@ -35,12 +38,24 @@ public class HealthProfessionalView implements PrescriptionObserver {
                 + "-fx-border-width: 1;\n");
         this.healthProfessional = hp;
         final Label l = new Label(hp.getName());
-        pane.getChildren().add(l);
+        final HBox strategy = new HBox();
+        final Label s = new Label("Strategy: ");
+        ComboBox cb = new ComboBox();
+        ObservableList<Strategy> listStrategy = FXCollections.observableArrayList(new SSIDStrategy("By SSID"), new NameStrategy("By Name"), new PrefixStrategy("By Prefix"));
+        cb.setItems(listStrategy);
+        cb.getSelectionModel().select(0);
+        strategy.getChildren().addAll(s, cb);
+        pane.getChildren().addAll(l, strategy);
         final HBox search = new HBox();
         final TextField t = new TextField();
         final Button b = new Button("Search");
         search.getChildren().addAll(t, b);
         pane.getChildren().addAll(search, prescriptions);
+        final Label err = new Label("Patient not found !!!");
+        String errorMessage = String.format("-fx-text-fill: RED;");
+        err.setStyle(errorMessage);
+        pane.getChildren().add(err);
+        err.setVisible(false);
         final EventHandler<ActionEvent> ssHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent event) {
@@ -48,14 +63,18 @@ public class HealthProfessionalView implements PrescriptionObserver {
                 if (text.equals("")) {
                     return; // Do nothing
                 }
-                selectedPatientSSID = text;
-                Patient lastPatient=patient;
-                patient = controller.findPatient(healthProfessional,selectedPatientSSID);
-                if (patient!=null){
-                    controller.registerViewObserver(HealthProfessionalView.this,patient);
-                    if (lastPatient!=null)
-                        controller.unregisterViewObserver(HealthProfessionalView.this,lastPatient);
+                Patient lastPatient = patient;
+                patient = controller.findPatient(((Strategy)cb.getValue()),text);
+                try {
+                    selectedPatientSSID = patient.getSSID();
+                    err.setVisible(false);
+                    controller.registerViewObserver(HealthProfessionalView.this, patient);
+                    if (lastPatient != null)
+                        controller.unregisterViewObserver(HealthProfessionalView.this, lastPatient);
                     showPrescriptions();
+                } catch (NullPointerException e) {
+                    System.err.println("Patient '" + text + "' not found !!!");
+                    err.setVisible(true);
                 }
                 t.setText("");
                 t.requestFocus();
@@ -70,6 +89,7 @@ public class HealthProfessionalView implements PrescriptionObserver {
         final Button bp = new Button("Add");
         addPrescription.getChildren().addAll(tp, bp);
         pane.getChildren().add(addPrescription);
+
         final HealthProfessionalView parent = this;
         final EventHandler<ActionEvent> prescriptionHandler = new EventHandler<ActionEvent>() {
             @Override
@@ -85,7 +105,8 @@ public class HealthProfessionalView implements PrescriptionObserver {
         };
 
         List<String> predefPrescr = controller.getPredefMedicines(hp);
-        for (final String p : predefPrescr) {
+        for (
+                final String p : predefPrescr) {
             final Button predefPrescrB = new Button(p);
             predefPrescrB.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
@@ -98,12 +119,11 @@ public class HealthProfessionalView implements PrescriptionObserver {
         tp.setOnAction(prescriptionHandler);
         bp.setOnAction(prescriptionHandler);
     }
-    
+
     void prescribe(final String prescription) {
-        if (selectedPatientSSID==null)
+        if (selectedPatientSSID == null)
             return;
-            if (!controller.addPrescription(healthProfessional,selectedPatientSSID,prescription))
-        {
+        if (!controller.addPrescription(healthProfessional, selectedPatientSSID, prescription)) {
             EasyAlert.alert("Please select a patient first");
             return;
         }
@@ -115,13 +135,13 @@ public class HealthProfessionalView implements PrescriptionObserver {
 
         if (patient == null) {
             prescriptions.getChildren().add(new Label(
-                "Use search above to see prescriptions"));
+                    "Use search above to see prescriptions"));
             return;
         }
         prescriptions.getChildren().add(new Label(
-            "Prescriptions for " + patient.getName()));
+                "Prescriptions for " + patient.getName()));
 
-        List<Prescription> listPrescriptions = controller.getPatientPrescriptionsByHP(patient,healthProfessional);
+        List<Prescription> listPrescriptions = controller.getPatientPrescriptionsByHP(patient, healthProfessional);
         for (final Prescription pr : listPrescriptions) {
             final HBox pView = new HBox();
             final Label content = new Label(
@@ -130,19 +150,19 @@ public class HealthProfessionalView implements PrescriptionObserver {
             removeBtn.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(final ActionEvent event) {
-                    controller.removePrescription(patient,pr);
+                    controller.removePrescription(patient, pr);
                     pView.getChildren().remove(content);
                     pView.getChildren().remove(removeBtn);
                 }
-                
+
             });
             pView.getChildren().addAll(content, removeBtn);
             prescriptions.getChildren().add(pView);
         }
     }
 
-    private void refreshHPPrescriptions(){
-        if (selectedPatientSSID!=null) showPrescriptions();
+    private void refreshHPPrescriptions() {
+        if (selectedPatientSSID != null) showPrescriptions();
     }
 
     public Pane asPane() {

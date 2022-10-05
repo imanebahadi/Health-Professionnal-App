@@ -43,9 +43,13 @@ public class Controller {
         return mes.getHealthProfessional();
     }
 
-    public Patient findPatient(HealthProfessional healthProfessional, String selectedPatientSSID) {
-        return healthProfessional.getPatient(selectedPatientSSID);
+    public Patient findPatient(Strategy strategy, String text) {
+        return strategy.findPatient(mes, text);
     }
+    /*
+    public Patient findPatientByName(HealthProfessional healthProfessional, String selectedPatientName) {
+        return healthProfessional.getPatientByName(selectedPatientName);
+    }*/
 
     public List<Prescription> getPatientPrescriptionsByHP(Patient p, HealthProfessional healthProfessional){
         return p.getPrescriptions(healthProfessional);

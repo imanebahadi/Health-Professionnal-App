@@ -2,7 +2,45 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37ecda3c-aac0-49ac-a863-6f3d82c2bd54" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/model/HealthProfessional.java" beforeDir="false" afterPath="$PROJECT_DIR$/model/HealthProfessional.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/NameStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/PrefixStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/SSIDStrategy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/model/Strategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/HealthProfessionalView.java" beforeDir="false" afterPath="$PROJECT_DIR$/view/HealthProfessionalView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view/JfxView.java" beforeDir="false" afterPath="$PROJECT_DIR$/view/JfxView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/Controllers/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/Controllers/Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/Dentist.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/Dentist.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/HealthProfessional.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/HealthProfessional.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/Homeopath.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/Homeopath.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/MES.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/MES.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/NonSpecialise.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/NonSpecialise.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/Patient.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/Patient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/Prescription.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/Prescription.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/PrescriptionObservable.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/PrescriptionObservable.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/PrescriptionObserver.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/model/PrescriptionObserver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/utils/EasyAlert.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/utils/EasyAlert.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/utils/EasyClipboard.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/utils/EasyClipboard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/view/HealthProfessionalView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/view/HealthProfessionalView$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/view/HealthProfessionalView$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/view/HealthProfessionalView$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/view/HealthProfessionalView.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/view/HealthProfessionalView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/view/JfxView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/view/JfxView.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/view/JfxView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/view/PatientView$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/view/PatientView.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/classes/fr/univ_lyon1/info/m1/mes/view/PatientView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/../../../../../../../../target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/site/jacoco/fr.univ_lyon1.info.m1.mes.view/HealthProfessionalView$1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/site/jacoco/fr.univ_lyon1.info.m1.mes.view/HealthProfessionalView$2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/site/jacoco/fr.univ_lyon1.info.m1.mes.view/HealthProfessionalView$3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/site/jacoco/fr.univ_lyon1.info.m1.mes.view/HealthProfessionalView$4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/site/jacoco/fr.univ_lyon1.info.m1.mes.view/JfxView$1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../../../../../../target/site/jacoco/fr.univ_lyon1.info.m1.mes.view/PatientView$1.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,7 +61,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Achou/mif01-2022/mes",
+    "last_opened_file_path": "C:/Users/Nawresse/mif01-2022",
     "nodejs_package_manager_path": "npm"
   }
 }]]></component>
@@ -36,6 +74,8 @@
       <option name="presentableId" value="Default" />
       <updated>1664043807496</updated>
       <workItem from="1664043808765" duration="39000" />
+      <workItem from="1664922308045" duration="61000" />
+      <workItem from="1664922998712" duration="30000" />
     </task>
     <servers />
   </component>

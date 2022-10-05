@@ -14,6 +14,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ScrollPane.ScrollBarPolicy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,9 +54,13 @@ public class JfxView {
         HBox.setHgrow(patients, Priority.SOMETIMES);
         HBox.setHgrow(healthPro, Priority.ALWAYS);
 
+        // Create a ScrollPane
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
+        scrollPane.setContent(root);
         
         // Everything's ready: add it to the scene and display it
-        final Scene scene = new Scene(root, width, height);
+        final Scene scene = new Scene(scrollPane, width, height);
         stage.setScene(scene);
         stage.show();
     }
@@ -80,7 +86,8 @@ public class JfxView {
         final Label ssIDL = new Label("ssID: ");
         final TextField ssIDT = new TextField();
         final Button newP = new Button("New");
-
+        // disable New button if nameT or ssIDL is null
+        newP.disableProperty().bind(nameT.textProperty().isEmpty().or(ssIDT.textProperty().isEmpty()));
         patients.getChildren().addAll(
                 new HBox(nameL, nameT),
                 new HBox(ssIDL, ssIDT),
