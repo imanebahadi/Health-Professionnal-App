@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class Patient implements PrescriptionObservable{
+public class Patient implements PrescriptionObservable {
     private final List<PrescriptionObserver> prescriptionObserverList = new ArrayList<>();
     private final List<Prescription> prescriptions = new ArrayList<>();
     private final String name;
