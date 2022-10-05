@@ -8,7 +8,7 @@
 
 # Ignore les fichiers de configuration d'Intellij
 .idea/
-../.idea/
+
 *.iml
 *.iws
 
