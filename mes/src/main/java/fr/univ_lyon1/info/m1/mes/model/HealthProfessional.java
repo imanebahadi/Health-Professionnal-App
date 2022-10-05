@@ -7,12 +7,12 @@ public class HealthProfessional {
     private final String name;
     private final MES mes;
 
-    private List<String> proposedMedicines;
+    private final List<String> proposedMedicines;
 
     public HealthProfessional(final String name, final MES mes) {
         this.name = name;
         this.mes = mes;
-        this.proposedMedicines=new ArrayList<>();
+        this.proposedMedicines = new ArrayList<>();
         this.proposedMedicines.add("Paracetamol");
         mes.addHealthProfessional(this);
     }
@@ -21,7 +21,7 @@ public class HealthProfessional {
         return proposedMedicines;
     }
 
-    protected void addProposedMedicine(String medicine){
+    protected void addProposedMedicine(final String medicine) {
         this.proposedMedicines.add(medicine);
     }
 

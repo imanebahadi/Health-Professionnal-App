@@ -2,7 +2,6 @@ package fr.univ_lyon1.info.m1.mes.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Patient implements PrescriptionObservable {
@@ -45,12 +44,12 @@ public class Patient implements PrescriptionObservable {
     }
 
     @Override
-    public void register(PrescriptionObserver observer) {
+    public void register(final PrescriptionObserver observer) {
         prescriptionObserverList.add(observer);
     }
 
     @Override
-    public void unregister(PrescriptionObserver observer) {
+    public void unregister(final PrescriptionObserver observer) {
         prescriptionObserverList.remove(observer);
 
     }
@@ -58,7 +57,7 @@ public class Patient implements PrescriptionObservable {
     @Override
     public void notifyObservers() {
         for (PrescriptionObserver observer : prescriptionObserverList) {
-                observer.update();
+            observer.update();
         }
 
     }

@@ -1,13 +1,16 @@
 package fr.univ_lyon1.info.m1.mes.model;
 
-import java.util.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MES {
 
 
     private final List<HealthProfessional> healthProfessionals = new ArrayList<>();
-    
+
     private final Map<String, Patient> registry = new HashMap<>();
 
     public Patient getPatient(final String ssID) {
@@ -22,8 +25,10 @@ public class MES {
 
     public void addHealthProfessional(final HealthProfessional hp) {
         healthProfessionals.add(hp);
-    };
-    
+    }
+
+
+
     public List<Patient> getPatients() {
         return new ArrayList<>(registry.values());
     }
@@ -47,7 +52,6 @@ public class MES {
         b.addPrescription(s, "Snake oil");
 
     }
-
 
 
 }

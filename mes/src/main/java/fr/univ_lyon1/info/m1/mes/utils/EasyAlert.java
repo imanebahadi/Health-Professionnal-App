@@ -3,7 +3,7 @@ package fr.univ_lyon1.info.m1.mes.utils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-/** 
+/**
  * A simple utility to display an error message in a popup window. Juste use
  * {@code EasyAlert.alert("message").}
  */

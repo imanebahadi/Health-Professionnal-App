@@ -31,6 +31,7 @@ public class JfxView {
     private List<HealthProfessionalView> listHPView;
 
     private Controller controller;
+
     /**
      * Create the main view of the application.
      */
@@ -38,7 +39,7 @@ public class JfxView {
                    final int width, final int height) {
         this.controller = controller;
         controller.attachToJfxView(this);
-        listPatientView=new ArrayList<>();
+        listPatientView = new ArrayList<>();
         listHPView = new ArrayList<>();
         // Name of window
         stage.setTitle("Mon Espace Santé");
@@ -47,7 +48,7 @@ public class JfxView {
 
         createPatientsWidget();
         root.getChildren().add(patients);
-        
+
         createHPWidget();
         root.getChildren().add(healthPro);
 
@@ -58,7 +59,7 @@ public class JfxView {
         ScrollPane scrollPane = new ScrollPane();
         scrollPane.setVbarPolicy(ScrollBarPolicy.AS_NEEDED);
         scrollPane.setContent(root);
-        
+
         // Everything's ready: add it to the scene and display it
         final Scene scene = new Scene(scrollPane, width, height);
         stage.setScene(scene);
@@ -67,7 +68,7 @@ public class JfxView {
 
     private Pane createHPWidget() {
         for (HealthProfessional p : controller.getListHP()) {
-            HealthProfessionalView hpv = new HealthProfessionalView(p,controller);
+            HealthProfessionalView hpv = new HealthProfessionalView(p, controller);
             listHPView.add(hpv);
             healthPro.getChildren().add(hpv.asPane());
         }
@@ -76,8 +77,8 @@ public class JfxView {
 
     private void createPatientsWidget() {
         patients.getChildren().clear();
-            for (Patient p : controller.getListPatients()) {
-            final PatientView patientView = new PatientView(p,controller);
+        for (Patient p : controller.getListPatients()) {
+            final PatientView patientView = new PatientView(p, controller);
             listPatientView.add(patientView);
             patients.getChildren().add(patientView.asPane());
         }
@@ -87,12 +88,13 @@ public class JfxView {
         final TextField ssIDT = new TextField();
         final Button newP = new Button("New");
         // disable New button if nameT or ssIDL is null
-        newP.disableProperty().bind(nameT.textProperty().isEmpty().or(ssIDT.textProperty().isEmpty()));
+        newP.disableProperty()
+                .bind(nameT.textProperty().isEmpty().or(ssIDT.textProperty().isEmpty()));
         patients.getChildren().addAll(
                 new HBox(nameL, nameT),
                 new HBox(ssIDL, ssIDT),
                 newP);
-        
+
         newP.setOnAction(new EventHandler<ActionEvent>() {
             /**
              * @param event
@@ -100,7 +102,8 @@ public class JfxView {
             @Override
             public void handle(final ActionEvent event) {
                 final Patient pat = controller.addPatient(nameT.getText(), ssIDT.getText());
-                final PatientView patientView = new PatientView(pat,controller); //crée un panel pr un patient
+                final PatientView patientView =
+                        new PatientView(pat, controller); //crée un panel pr un patient
                 listPatientView.add(patientView);
             }
         });
@@ -108,8 +111,8 @@ public class JfxView {
     }
 
 
-    public void addPatientView(Patient patient){
-        final PatientView patientView = new PatientView(patient,controller);
+    public void addPatientView(final Patient patient) {
+        final PatientView patientView = new PatientView(patient, controller);
         listPatientView.add(patientView);
         patients.getChildren().add(patientView.asPane());
     }

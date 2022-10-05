@@ -1,19 +1,19 @@
 package fr.univ_lyon1.info.m1.mes.model;
-import fr.univ_lyon1.info.m1.mes.Controllers.*;
-import java.util.List;
+
+
 public class SSIDStrategy extends Strategy {
 
-    public SSIDStrategy(String label) {
+    public SSIDStrategy(final String label) {
         super(label);
     }
 
     @Override
     public String toString() {
-        return label;
+        return getLabel();
     }
 
     @Override
-    public Patient findPatient(MES mes, String text) {
+    public Patient findPatient(final MES mes, final String text) {
         return mes.getPatient(text);
     }
 }

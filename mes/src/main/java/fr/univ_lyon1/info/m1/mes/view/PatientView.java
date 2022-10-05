@@ -5,7 +5,6 @@ import fr.univ_lyon1.info.m1.mes.model.Patient;
 import fr.univ_lyon1.info.m1.mes.model.Prescription;
 import fr.univ_lyon1.info.m1.mes.model.PrescriptionObserver;
 import fr.univ_lyon1.info.m1.mes.utils.EasyClipboard;
-import javafx.collections.ObservableArray;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -22,10 +21,10 @@ public class PatientView implements PrescriptionObserver {
     private Pane prescriptionPane = new VBox();
     private final Controller controller;
 
-    public PatientView(final Patient patient, Controller controller) {
+    public PatientView(final Patient patient, final Controller controller) {
         this.patient = patient;
-        this.controller=controller;
-        controller.registerViewObserver(this,patient);
+        this.controller = controller;
+        controller.registerViewObserver(this, patient);
 
         pane.setStyle("-fx-border-color: gray;\n"
                 + "-fx-border-insets: 5;\n"
@@ -60,7 +59,7 @@ public class PatientView implements PrescriptionObserver {
         return pane;
     }
 
-    private void refreshPatientPrescriptions(){
+    private void refreshPatientPrescriptions() {
         showPrescriptions();
     }
 

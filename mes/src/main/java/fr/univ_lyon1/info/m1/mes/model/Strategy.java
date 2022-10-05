@@ -1,10 +1,14 @@
 package fr.univ_lyon1.info.m1.mes.model;
-import fr.univ_lyon1.info.m1.mes.Controllers.*;
-import java.util.List;
-public abstract class Strategy {
-    protected String label;
 
-    public Strategy(String  label) {
+
+public abstract class Strategy {
+    private final String label;
+
+    public String getLabel() {
+        return label;
+    }
+
+    public Strategy(final String label) {
         this.label = label;
     }
 
