@@ -14,7 +14,7 @@ public class PrefixStrategy extends Strategy {
 
     @Override
     public Patient findPatient(final MES mes, final String text) {
-        return mes.getPatients().stream().filter(p -> p.getName().contains(text)).findFirst()
+        return mes.getPatients().stream().filter(p -> p.getName().startsWith(text)).findFirst()
                 .orElse(null);
     }
 }
