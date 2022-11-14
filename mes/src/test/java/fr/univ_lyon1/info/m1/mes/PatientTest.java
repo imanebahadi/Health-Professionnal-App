@@ -3,6 +3,7 @@ package fr.univ_lyon1.info.m1.mes;
 import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
 import fr.univ_lyon1.info.m1.mes.model.MES;
 import fr.univ_lyon1.info.m1.mes.model.Patient;
+import fr.univ_lyon1.info.m1.mes.model.Patient.PatientBuilder;
 import fr.univ_lyon1.info.m1.mes.model.Prescription;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -21,8 +22,9 @@ class PatientTest {
         //GIVEN
     mes = new MES();
     hp = new HealthProfessional("Smith",mes);
-
-    patient = mes.createPatient("alice","1234");
+    
+    PatientBuilder pb = new PatientBuilder("alice","1234");
+    patient = pb.build();
     }
 
     @Test

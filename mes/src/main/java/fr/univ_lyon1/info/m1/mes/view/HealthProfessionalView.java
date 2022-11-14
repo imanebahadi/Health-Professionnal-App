@@ -35,7 +35,7 @@ public class HealthProfessionalView implements PrescriptionObserver {
     private Patient patient = null;
 
     private final Controller controller;
-
+                                    //modele
     public HealthProfessionalView(final HealthProfessional hp, final Controller controller) {
         this.controller = controller;
 
@@ -43,6 +43,7 @@ public class HealthProfessionalView implements PrescriptionObserver {
                 + "-fx-border-insets: 5;\n"
                 + "-fx-padding: 5;\n"
                 + "-fx-border-width: 1;\n");
+
         this.healthProfessional = hp;
         final Label l = new Label(hp.getName());
         final HBox strategy = new HBox();
@@ -110,12 +111,15 @@ public class HealthProfessionalView implements PrescriptionObserver {
         };
 
         List<String> predefPrescr = controller.getPredefMedicines(hp);
+        if (predefPrescr != null) {
         for (
                 final String p : predefPrescr) {
             final Button predefPrescrB = new Button(p);
             predefPrescrB.setOnAction(event -> parent.prescribe(p));
             pane.getChildren().add(predefPrescrB);
         }
+        }
+        
         tp.setOnAction(prescriptionHandler);
         bp.setOnAction(prescriptionHandler);
     }

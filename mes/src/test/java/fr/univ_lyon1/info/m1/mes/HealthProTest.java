@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
 import fr.univ_lyon1.info.m1.mes.model.MES;
 import fr.univ_lyon1.info.m1.mes.model.Patient;
+import fr.univ_lyon1.info.m1.mes.model.Patient.PatientBuilder;
 import fr.univ_lyon1.info.m1.mes.model.Prescription;
 
 public class HealthProTest {
@@ -39,7 +40,9 @@ public class HealthProTest {
     public void GetPrescriptionTest() {
         // Given
         HealthProfessional hp = new HealthProfessional("Dr. Smith", model);
-        Patient p = model.createPatient("Alice", "20123456789012");
+        PatientBuilder pb = new PatientBuilder("Alice","20123456789012");
+        Patient p = pb.build();
+        //Patient p = model.createPatient("Alice", "20123456789012");
         p.addPrescription(hp, "Do some sport");
 
         // When
@@ -59,7 +62,9 @@ public class HealthProTest {
     public void GetNotPrescriptionTest() {
         // Given
         HealthProfessional hp = new HealthProfessional("Dr. Smith", model);
-        Patient p = model.createPatient("Alice", "20123456789012");
+        PatientBuilder pb = new PatientBuilder("Alice","20123456789012");
+        Patient p = pb.build();
+        //Patient p = model.createPatient("Alice", "20123456789012");
         p.addPrescription(hp, "Eat fruits");
 
         // When
