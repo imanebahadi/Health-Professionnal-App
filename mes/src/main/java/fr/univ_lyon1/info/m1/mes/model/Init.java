@@ -19,7 +19,7 @@ public class Init {
         .name("Dr. Hahnemann")
         .mes(mes).build();
         hm.addProposedMedicine("Natrum Muriaticum 30CH", "allergies");
-        hm.addProposedMedicine("Sucre 200K", "grippe");
+        hm.addProposedMedicine("Sucre 200K", "si grippe");
 
         final NonSpecialise ns = NonSpecialise.builder()
         .name("Dr. David")
