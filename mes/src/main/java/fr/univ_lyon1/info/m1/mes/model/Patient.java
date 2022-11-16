@@ -10,6 +10,11 @@ public class Patient implements PrescriptionObservable {
     private final String name;
     private final String ssID;
 
+    public Patient(final String name, final String ssID) {
+        this.name = name;
+        this.ssID = ssID;
+    }
+
     public List<Prescription> getPrescriptions(final HealthProfessional hp) {
         return prescriptions.stream()
                 .filter(p -> p.getHealthProfessional() == hp)
@@ -20,9 +25,8 @@ public class Patient implements PrescriptionObservable {
         return prescriptions;
     }
 
-    public Patient(final String name, final String ssID) {
-        this.name = name;
-        this.ssID = ssID;
+    public static PatientBuilder builder() {
+        return new PatientBuilder();
     }
 
     public void addPrescription(final HealthProfessional hp, final String content) {
@@ -58,6 +62,46 @@ public class Patient implements PrescriptionObservable {
     public void notifyObservers() {
         for (PrescriptionObserver observer : prescriptionObserverList) {
             observer.update();
+        }
+
+    }
+
+    public static class PatientBuilder {
+
+        private String name;
+        private String ssID;
+        private MES mes = new MES();
+
+        public PatientBuilder(final String name, final String ssID) {
+            this.name = name;
+            this.ssID = ssID;
+        }
+
+        public PatientBuilder() { }
+        
+        public PatientBuilder name(final String name) {
+            this.name = name;
+            return this;
+        }
+
+        
+        public PatientBuilder ssID(final String ssID) {
+            this.ssID = ssID;
+            return this;
+        }
+
+        public String getName() {
+                return name;
+        }
+
+        public String getssID() {
+                return ssID;
+        }
+
+        public Patient build() {
+            Patient p = new Patient(name, ssID); 
+            mes.getRegistry().put(ssID, p);           
+            return p;
         }
 
     }

@@ -2,6 +2,8 @@ package fr.univ_lyon1.info.m1.mes.view;
 
 
 import java.util.List;
+import java.util.Map;
+
 
 
 import fr.univ_lyon1.info.m1.mes.Controllers.Controller;
@@ -35,7 +37,7 @@ public class HealthProfessionalView implements PrescriptionObserver {
     private Patient patient = null;
 
     private final Controller controller;
-
+                                    //modele
     public HealthProfessionalView(final HealthProfessional hp, final Controller controller) {
         this.controller = controller;
 
@@ -43,6 +45,7 @@ public class HealthProfessionalView implements PrescriptionObserver {
                 + "-fx-border-insets: 5;\n"
                 + "-fx-padding: 5;\n"
                 + "-fx-border-width: 1;\n");
+
         this.healthProfessional = hp;
         final Label l = new Label(hp.getName());
         final HBox strategy = new HBox();
@@ -109,13 +112,15 @@ public class HealthProfessionalView implements PrescriptionObserver {
             parent.prescribe(text);
         };
 
-        List<String> predefPrescr = controller.getPredefMedicines(hp);
-        for (
-                final String p : predefPrescr) {
-            final Button predefPrescrB = new Button(p);
-            predefPrescrB.setOnAction(event -> parent.prescribe(p));
-            pane.getChildren().add(predefPrescrB);
+        //List<String> predefPrescr = controller.getPredefMedicines(hp);
+        Map<String, String> indications = controller.getIndications(hp);
+        for (Map.Entry<String, String> p : indications.entrySet()) {
+            final Button predefPrescrB = new Button(p.getKey() + "\n" + "(" + p.getValue() + ")");
+            
+            predefPrescrB.setOnAction(event -> parent.prescribe(p.getKey()));
+            pane.getChildren().add(predefPrescrB);   
         }
+        
         tp.setOnAction(prescriptionHandler);
         bp.setOnAction(prescriptionHandler);
     }

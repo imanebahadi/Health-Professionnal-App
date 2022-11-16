@@ -3,6 +3,7 @@ package fr.univ_lyon1.info.m1.mes.Controllers;
 import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
 import fr.univ_lyon1.info.m1.mes.model.MES;
 import fr.univ_lyon1.info.m1.mes.model.Patient;
+import fr.univ_lyon1.info.m1.mes.model.Patient.PatientBuilder;
 import fr.univ_lyon1.info.m1.mes.model.Prescription;
 import fr.univ_lyon1.info.m1.mes.model.PrescriptionObserver;
 import fr.univ_lyon1.info.m1.mes.model.Strategy;
@@ -10,6 +11,7 @@ import fr.univ_lyon1.info.m1.mes.view.JfxView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Controller {
 
@@ -42,7 +44,10 @@ public class Controller {
     }
 
     public Patient addPatient(final String name, final String ssID) {
-        Patient patient = this.mes.createPatient(name, ssID);
+        //Patient patient = this.mes.createPatient(name, ssID);
+        PatientBuilder pb = new PatientBuilder(name, ssID);
+        Patient patient = pb.build();
+
         for (JfxView jfxView : jfxViews) {
             jfxView.addPatientView(patient);
         }
@@ -72,8 +77,8 @@ public class Controller {
         return true;
     }
 
-    public List<String> getPredefMedicines(final HealthProfessional healthProfessional) {
-        return healthProfessional.getProposedMedicines();
+    public Map<String, String> getIndications(final HealthProfessional healthProfessional) {
+        return healthProfessional.getMedicineIndication();
     }
 
     public List<Prescription> getPatientPrescriptions(final Patient p) {
