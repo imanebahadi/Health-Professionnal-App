@@ -9,14 +9,14 @@ import java.util.Map;
 public class MES {
 
 
-    private static final List<HealthProfessional> healthProfessionals = new ArrayList<>(); 
+    private static final List<HealthProfessional> HEALTHPROFESSIONALS = new ArrayList<>(); 
     //static bon ?
 
-    private static final  Map<String, Patient> registry = new HashMap<>();
+    private static final  Map<String, Patient> REGISTRY = new HashMap<>();
 
     public Patient getPatient(final String ssID) {
         
-        return registry.get(ssID);
+        return REGISTRY.get(ssID);
     }
 
     /*public Patient createPatient(final String name, final String ssID) {
@@ -26,19 +26,19 @@ public class MES {
     }*/
 
     public Map<String, Patient> getRegistry() {
-        return registry;
+        return REGISTRY;
     }
 
     public void addHealthProfessional(final HealthProfessional hp) {
-        healthProfessionals.add(hp);
+        HEALTHPROFESSIONALS.add(hp);
     }
 
     public List<Patient> getPatients() {
-        return new ArrayList<>(registry.values());
+        return new ArrayList<>(REGISTRY.values());
     }
 
     public List<HealthProfessional> getHealthProfessional() {
-        return healthProfessionals;
+        return HEALTHPROFESSIONALS;
     }
 
     /*public void createExampleConfiguration() {       
