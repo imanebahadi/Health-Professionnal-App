@@ -11,6 +11,7 @@ import fr.univ_lyon1.info.m1.mes.view.JfxView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Controller {
 
@@ -76,8 +77,8 @@ public class Controller {
         return true;
     }
 
-    public List<String> getPredefMedicines(final HealthProfessional healthProfessional) {
-        return healthProfessional.getProposedMedicines();
+    public Map<String, String> getIndications(final HealthProfessional healthProfessional) {
+        return healthProfessional.getMedicineIndication();
     }
 
     public List<Prescription> getPatientPrescriptions(final Patient p) {

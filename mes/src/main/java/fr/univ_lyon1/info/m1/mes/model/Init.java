@@ -13,13 +13,13 @@ public class Init {
         final Dentist hp2 = Dentist.builder()
         .name("Dr. Strange")
         .mes(mes).build();
-        hp2.addProposedMedicine("Don't eat for one hour");
+        hp2.addProposedMedicine("Don't eat for one hour", "if anesthesia");
 
         final Homeopath hm = Homeopath.builder()
         .name("Dr. Hahnemann")
         .mes(mes).build();
-        hm.addProposedMedicine("Natrum Muriaticum 30CH");
-        hm.addProposedMedicine("Sucre 200K");
+        hm.addProposedMedicine("Natrum Muriaticum 30CH", "allergies");
+        hm.addProposedMedicine("Sucre 200K", "grippe");
 
         final NonSpecialise ns = NonSpecialise.builder()
         .name("Dr. David")
@@ -28,8 +28,8 @@ public class Init {
         final Ophtalmologue o = Ophtalmologue.builder()
         .name("Dr Smith")
         .mes(mes).build();
-        o.addProposedMedicine("Lunette de repos");
-        o.addProposedMedicine("Boire de l'eau");
+        o.addProposedMedicine("Lunette de repos", "avant de dormir");
+        o.addProposedMedicine("Boire de l'eau", "1,5L par jour minimum");
 
         final Patient patient1 = Patient.builder()
         .name("Alice Foo")

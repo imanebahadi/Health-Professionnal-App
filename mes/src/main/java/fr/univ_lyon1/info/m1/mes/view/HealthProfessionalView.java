@@ -2,6 +2,8 @@ package fr.univ_lyon1.info.m1.mes.view;
 
 
 import java.util.List;
+import java.util.Map;
+
 
 
 import fr.univ_lyon1.info.m1.mes.Controllers.Controller;
@@ -110,14 +112,13 @@ public class HealthProfessionalView implements PrescriptionObserver {
             parent.prescribe(text);
         };
 
-        List<String> predefPrescr = controller.getPredefMedicines(hp);
-        if (predefPrescr != null) {
-        for (
-                final String p : predefPrescr) {
-            final Button predefPrescrB = new Button(p);
-            predefPrescrB.setOnAction(event -> parent.prescribe(p));
-            pane.getChildren().add(predefPrescrB);
-        }
+        //List<String> predefPrescr = controller.getPredefMedicines(hp);
+        Map<String, String> indications = controller.getIndications(hp);
+        for (Map.Entry<String, String> p : indications.entrySet()) {
+            final Button predefPrescrB = new Button(p.getKey() + "\n" + "(" + p.getValue() + ")");
+            
+            predefPrescrB.setOnAction(event -> parent.prescribe(p.getKey()));
+            pane.getChildren().add(predefPrescrB);   
         }
         
         tp.setOnAction(prescriptionHandler);

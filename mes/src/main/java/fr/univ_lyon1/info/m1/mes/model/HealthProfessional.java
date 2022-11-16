@@ -1,14 +1,16 @@
 package fr.univ_lyon1.info.m1.mes.model;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
+
 
 public class HealthProfessional {
     
     private final String name;
     private final MES mes;
 
-    private final List<String> proposedMedicines;
+    private final  Map<String, String> proposedMedicinesIndications = new HashMap<>();
 
     public static HealthProfessionalBuilder<?> builder() {
         return new HealthProfessionalBuilder<>();
@@ -17,17 +19,16 @@ public class HealthProfessional {
     public HealthProfessional(final String name, final MES mes) {
         this.name = name;
         this.mes = mes;
-        this.proposedMedicines = new ArrayList<>();
-        addProposedMedicine("Paracetamol");
+        addProposedMedicine("Paracetamol", "Pain-Killer");
         mes.addHealthProfessional(this);
     }
 
-    public List<String> getProposedMedicines() {
-        return proposedMedicines;
+    public Map<String, String> getMedicineIndication() {
+        return proposedMedicinesIndications;
     }
 
-    protected void addProposedMedicine(final String medicine) {
-        this.proposedMedicines.add(medicine);
+    protected void addProposedMedicine(final String predefMedicine, final String indication) {
+        this.proposedMedicinesIndications.put(predefMedicine, indication); 
     }
 
     public String getName() {
