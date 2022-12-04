@@ -44,7 +44,6 @@ public class Controller {
     }
 
     public Patient addPatient(final String name, final String ssID) {
-        //Patient patient = this.mes.createPatient(name, ssID);
         PatientBuilder pb = new PatientBuilder(name, ssID);
         Patient patient = pb.build();
 

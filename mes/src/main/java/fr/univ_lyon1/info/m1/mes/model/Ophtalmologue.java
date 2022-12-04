@@ -8,8 +8,6 @@ public class Ophtalmologue extends HealthProfessional {
     public static OphtalmologueBuilder builder() {
         return new OphtalmologueBuilder();
     }
-
-
 public static class OphtalmologueBuilder extends HealthProfessionalBuilder<OphtalmologueBuilder> {
 
         public OphtalmologueBuilder() { }

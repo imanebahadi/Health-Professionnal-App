@@ -22,9 +22,8 @@ class PatientTest {
         //GIVEN
     mes = new MES();
     hp = new HealthProfessional("Smith",mes);
-    
-    PatientBuilder pb = new PatientBuilder("alice","1234");
-    patient = pb.build();
+    patient = new PatientBuilder("alice","1234").build();
+
     }
 
     @Test
@@ -35,8 +34,6 @@ class PatientTest {
         // THEN
         assertThat(prescriptions, hasItem(
                 hasProperty("content", equalTo("Paracétamol"))));
-
-
     }
 
     @Test
