@@ -7,14 +7,7 @@ import java.util.Map;
 
 
 import fr.univ_lyon1.info.m1.mes.Controllers.Controller;
-import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
-import fr.univ_lyon1.info.m1.mes.model.NameStrategy;
-import fr.univ_lyon1.info.m1.mes.model.Patient;
-import fr.univ_lyon1.info.m1.mes.model.PrefixStrategy;
-import fr.univ_lyon1.info.m1.mes.model.Prescription;
-import fr.univ_lyon1.info.m1.mes.model.PrescriptionObserver;
-import fr.univ_lyon1.info.m1.mes.model.SSIDStrategy;
-import fr.univ_lyon1.info.m1.mes.model.Strategy;
+import fr.univ_lyon1.info.m1.mes.model.*;
 import fr.univ_lyon1.info.m1.mes.utils.EasyAlert;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -50,6 +43,7 @@ public class HealthProfessionalView implements PrescriptionObserver {
         final Label l = new Label(hp.getName());
         final HBox strategy = new HBox();
         final Label s = new Label("Strategy: ");
+        final Button message = new Button("\uD83D\uDCAC"); //MODIF📩
         final ComboBox cb;
         cb = new ComboBox();
         ObservableList<Strategy> listStrategy =
@@ -58,7 +52,16 @@ public class HealthProfessionalView implements PrescriptionObserver {
         cb.setItems(listStrategy);
         cb.getSelectionModel().select(0);
         strategy.getChildren().addAll(s, cb);
-        pane.getChildren().addAll(l, strategy);
+        pane.getChildren().addAll(l, message, strategy); //MODIF
+        final TextField messageT = new TextField();
+        message.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent event) {
+                Message msg = controller.addMessage(messageT.getText());
+                new MessageView(msg,controller);
+            }
+        });
+
         final HBox search = new HBox();
         final TextField t = new TextField();
         final Button b = new Button("Search");

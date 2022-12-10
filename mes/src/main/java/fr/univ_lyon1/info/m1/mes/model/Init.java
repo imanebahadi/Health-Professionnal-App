@@ -47,7 +47,6 @@ public class Init {
         .name("Charles Boz")
         .ssID("102020212345678").build();
 
-      
 
 
     }

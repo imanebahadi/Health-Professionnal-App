@@ -36,7 +36,6 @@ class PatientTest {
         assertThat(prescriptions, hasItem(
                 hasProperty("content", equalTo("Paracétamol"))));
 
-
     }
 
     @Test

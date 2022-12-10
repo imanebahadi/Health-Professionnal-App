@@ -3,6 +3,7 @@ package fr.univ_lyon1.info.m1.mes.Controllers;
 import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
 import fr.univ_lyon1.info.m1.mes.model.MES;
 import fr.univ_lyon1.info.m1.mes.model.Patient;
+import fr.univ_lyon1.info.m1.mes.model.Message;
 import fr.univ_lyon1.info.m1.mes.model.Patient.PatientBuilder;
 import fr.univ_lyon1.info.m1.mes.model.Prescription;
 import fr.univ_lyon1.info.m1.mes.model.PrescriptionObserver;
@@ -90,5 +91,15 @@ public class Controller {
 
     }
 
+    public Message addMessage(final String message) {
+        Message msg = new Message(message);
+        msg.addMessage(message);
+        System.out.println("msg list " + msg.getMessages());
+        return msg;
+    }
+
+    public String getMessageFromPatient(Message msg) {
+        return msg.messageFromPatient();
+    }
 
 }
