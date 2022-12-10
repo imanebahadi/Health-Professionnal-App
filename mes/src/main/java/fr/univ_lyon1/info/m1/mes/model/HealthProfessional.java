@@ -9,9 +9,7 @@ public class HealthProfessional {
     
     private final String name;
     private final MES mes;
-
     private final  Map<String, String> proposedMedicinesIndications = new HashMap<>();
-
     public static HealthProfessionalBuilder<?> builder() {
         return new HealthProfessionalBuilder<>();
     }

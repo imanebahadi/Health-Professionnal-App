@@ -1,12 +1,7 @@
 package fr.univ_lyon1.info.m1.mes;
 
 import fr.univ_lyon1.info.m1.mes.Controllers.Controller;
-import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
-import fr.univ_lyon1.info.m1.mes.model.MES;
-import fr.univ_lyon1.info.m1.mes.model.Patient;
-import fr.univ_lyon1.info.m1.mes.model.Prescription;
-import fr.univ_lyon1.info.m1.mes.model.SSIDStrategy;
-import fr.univ_lyon1.info.m1.mes.model.Strategy;
+import fr.univ_lyon1.info.m1.mes.model.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -113,5 +108,16 @@ class ControllerTest {
         controller.removePrescription(patient, prescriptions.get(prescriptions.size() - 1));
         assertThat(controller.getPatientPrescriptions(patient), not(hasItem(
                 hasProperty("content", equalTo("Paracetamol")))));
+    }
+
+    @Test
+    void addMessage() {
+        assertThat(controller.addMessage("text"), is(notNullValue()));
+    }
+
+    @Test
+    void getMessageFromPatient() {
+        Message message = new Message("text");
+        assertThat(controller.getMessageFromPatient(message), is(notNullValue()));
     }
 }

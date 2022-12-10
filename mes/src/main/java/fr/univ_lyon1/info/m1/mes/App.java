@@ -20,8 +20,8 @@ public class App extends Application {
         final MES model = new MES();
         final Controller controller = new Controller(model);
         new Init();
-        new JfxView(controller, stage, 600, 600);
 
+        new JfxView(controller, stage, 600, 600);
         new JfxView(controller, new Stage(), 600, 600);
     }
 

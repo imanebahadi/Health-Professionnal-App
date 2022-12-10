@@ -1,36 +1,40 @@
 package fr.univ_lyon1.info.m1.mes.view;
 
 
-import java.util.List;
-import java.util.Map;
-
-
-
 import fr.univ_lyon1.info.m1.mes.Controllers.Controller;
-import fr.univ_lyon1.info.m1.mes.model.*;
+import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
+import fr.univ_lyon1.info.m1.mes.model.PrescriptionObserver;
+import fr.univ_lyon1.info.m1.mes.model.SSIDStrategy;
+import fr.univ_lyon1.info.m1.mes.model.Strategy;
+import fr.univ_lyon1.info.m1.mes.model.Prescription;
+import fr.univ_lyon1.info.m1.mes.model.Patient;
+import fr.univ_lyon1.info.m1.mes.model.Message;
+import fr.univ_lyon1.info.m1.mes.model.PrefixStrategy;
+import fr.univ_lyon1.info.m1.mes.model.NameStrategy;
 import fr.univ_lyon1.info.m1.mes.utils.EasyAlert;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.ComboBox;
-import javafx.collections.ObservableList;
-import javafx.collections.FXCollections;
+
+import java.util.List;
+import java.util.Map;
 
 public class HealthProfessionalView implements PrescriptionObserver {
     private final VBox pane = new VBox();
     private final HealthProfessional healthProfessional;
     private String selectedPatientSSID;
     private final VBox prescriptions = new VBox();
-
     private Patient patient = null;
-
     private final Controller controller;
-                                    //modele
+
     public HealthProfessionalView(final HealthProfessional hp, final Controller controller) {
         this.controller = controller;
 
@@ -43,7 +47,7 @@ public class HealthProfessionalView implements PrescriptionObserver {
         final Label l = new Label(hp.getName());
         final HBox strategy = new HBox();
         final Label s = new Label("Strategy: ");
-        final Button message = new Button("\uD83D\uDCAC"); //MODIF📩
+        final Button message = new Button("\uD83D\uDCE9"); //MODIF📩
         final ComboBox cb;
         cb = new ComboBox();
         ObservableList<Strategy> listStrategy =
@@ -52,13 +56,13 @@ public class HealthProfessionalView implements PrescriptionObserver {
         cb.setItems(listStrategy);
         cb.getSelectionModel().select(0);
         strategy.getChildren().addAll(s, cb);
-        pane.getChildren().addAll(l, message, strategy); //MODIF
+        pane.getChildren().addAll(l, message, strategy);
         final TextField messageT = new TextField();
         message.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(final ActionEvent event) {
                 Message msg = controller.addMessage(messageT.getText());
-                new MessageView(msg,controller);
+                new MessageView(msg, controller);
             }
         });
 
@@ -115,7 +119,6 @@ public class HealthProfessionalView implements PrescriptionObserver {
             parent.prescribe(text);
         };
 
-        //List<String> predefPrescr = controller.getPredefMedicines(hp);
         Map<String, String> indications = controller.getIndications(hp);
         for (Map.Entry<String, String> p : indications.entrySet()) {
             final Button predefPrescrB = new Button(p.getKey() + "\n" + "(" + p.getValue() + ")");

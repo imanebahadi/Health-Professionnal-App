@@ -11,7 +11,7 @@ public class Dentist extends HealthProfessional {
     }
 
 
-public static class DentistBuilder extends HealthProfessionalBuilder<DentistBuilder> {
+    public static class DentistBuilder extends HealthProfessionalBuilder<DentistBuilder> {
 
         public DentistBuilder() { }
 

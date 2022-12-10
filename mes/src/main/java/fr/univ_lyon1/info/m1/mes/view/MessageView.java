@@ -4,29 +4,28 @@ import fr.univ_lyon1.info.m1.mes.Controllers.Controller;
 import fr.univ_lyon1.info.m1.mes.model.Message;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.*;
-import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.ScrollPane.ScrollBarPolicy;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class MessageView {
 
     private VBox root = new VBox();
     private Scene scene;
-    int i = 0;
+    private int i = 0;
     private final Button add = new Button("Send");
-    final Label messageL = new Label("Message: ");
-    final TextField messageT = new TextField();
-
-
+    private final Label messageL = new Label("Message: ");
+    private final TextField messageT = new TextField();
     private Message message;
     private Controller controller;
 
-    public MessageView(Message message, Controller controller) {
+    public MessageView(final Message message, final Controller controller) {
         this.message = message;
         this.controller = controller;
         // New window (Stage)
@@ -37,7 +36,7 @@ public class MessageView {
         initChatBox();
     }
 
-    public void start(Stage stage) {
+    public void start(final Stage stage) {
 
         initChatBox();
         ScrollPane scrollPane = new ScrollPane();
@@ -70,7 +69,9 @@ public class MessageView {
                 boxSender.setAlignment(Pos.CENTER_RIGHT);
                 root.getChildren().addAll(boxSender);
                 i++;
-            } else if (i == 1) {
+            }
+
+            else if (i == 1) {
                 Message msg = controller.addMessage(messageT.getText());
                 String n = controller.getMessageFromPatient(msg);
                 final Label msgT = new Label(n);

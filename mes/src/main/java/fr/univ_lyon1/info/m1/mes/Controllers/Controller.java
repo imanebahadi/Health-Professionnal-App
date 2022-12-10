@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Controller {
-
     private final MES mes;
     private List<JfxView> jfxViews;
     private PrescriptionObserver observer;
@@ -87,7 +86,6 @@ public class Controller {
 
     public void removePrescription(final Patient patient, final Prescription prescription) {
         patient.removePrescription(prescription);
-
     }
 
     public Message addMessage(final String message) {
@@ -96,7 +94,7 @@ public class Controller {
         return msg;
     }
 
-    public String getMessageFromPatient(Message msg) {
+    public String getMessageFromPatient(final Message msg) {
         return msg.messageFromPatient();
     }
 

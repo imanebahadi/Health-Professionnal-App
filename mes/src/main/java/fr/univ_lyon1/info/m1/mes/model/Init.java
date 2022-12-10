@@ -1,7 +1,6 @@
 package fr.univ_lyon1.info.m1.mes.model;
 
 public class Init {
-
     public Init() {
 
         MES mes = new MES();
@@ -46,8 +45,6 @@ public class Init {
         final Patient patient3 = Patient.builder()
         .name("Charles Boz")
         .ssID("102020212345678").build();
-
-
 
     }
 }

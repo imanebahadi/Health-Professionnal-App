@@ -6,20 +6,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-
 public class MES {
 
-
-    private static final List<HealthProfessional> HEALTHPROFESSIONALS = new ArrayList<>(); 
-
-
+    private static final List<HealthProfessional> HEALTHPROFESSIONALS = new ArrayList<>();
     private static final  Map<String, Patient> REGISTRY = new HashMap<>();
 
-    public Patient getPatient(final String ssID) {
-        
-        return REGISTRY.get(ssID);
-    }
+    public Patient getPatient(final String ssID) { return REGISTRY.get(ssID); }
     public Map<String, Patient> getRegistry() {
         return REGISTRY;
     }
@@ -35,6 +27,5 @@ public class MES {
     public List<HealthProfessional> getHealthProfessional() {
         return HEALTHPROFESSIONALS;
     }
-
 
 }

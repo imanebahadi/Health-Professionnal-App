@@ -5,5 +5,4 @@ public interface PrescriptionObserver {
      * Update the observer.
      */
     void update();
-
 }

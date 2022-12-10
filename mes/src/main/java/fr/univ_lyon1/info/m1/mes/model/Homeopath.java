@@ -10,8 +10,7 @@ public class Homeopath extends HealthProfessional {
         return new HomeopathBuilder();
     }
 
-
-public static class HomeopathBuilder extends HealthProfessionalBuilder<HomeopathBuilder> {
+    public static class HomeopathBuilder extends HealthProfessionalBuilder<HomeopathBuilder> {
 
         public HomeopathBuilder() { }
 

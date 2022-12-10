@@ -1,6 +1,5 @@
 package fr.univ_lyon1.info.m1.mes.model;
 public class SSIDStrategy extends Strategy {
-
     public SSIDStrategy(final String label) {
         super(label);
     }

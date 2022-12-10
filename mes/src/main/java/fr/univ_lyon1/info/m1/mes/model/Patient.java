@@ -53,21 +53,16 @@ public class Patient implements PrescriptionObservable {
     }
 
     @Override
-    public void unregister(final PrescriptionObserver observer) {
-        prescriptionObserverList.remove(observer);
-
-    }
+    public void unregister(final PrescriptionObserver observer) { prescriptionObserverList.remove(observer); }
 
     @Override
     public void notifyObservers() {
         for (PrescriptionObserver observer : prescriptionObserverList) {
             observer.update();
         }
-
     }
 
     public static class PatientBuilder {
-
         private String name;
         private String ssID;
         private MES mes = new MES();
@@ -84,7 +79,6 @@ public class Patient implements PrescriptionObservable {
             return this;
         }
 
-        
         public PatientBuilder ssID(final String ssID) {
             this.ssID = ssID;
             return this;
@@ -103,7 +97,5 @@ public class Patient implements PrescriptionObservable {
             mes.getRegistry().put(ssID, p);           
             return p;
         }
-
     }
-
 }

@@ -6,7 +6,6 @@ public class PrefixStrategy extends Strategy {
     public PrefixStrategy(final String label) {
         super(label);
     }
-
     @Override
     public String toString() {
         return getLabel();

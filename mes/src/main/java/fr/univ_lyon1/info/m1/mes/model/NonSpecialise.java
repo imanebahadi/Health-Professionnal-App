@@ -9,12 +9,9 @@ public class NonSpecialise extends HealthProfessional {
         return new NonSpecialiseBuilder();
     }
 
-
     public static class NonSpecialiseBuilder extends 
                         HealthProfessionalBuilder<NonSpecialiseBuilder> {
-
-            public NonSpecialiseBuilder() { }
-
+            public NonSpecialiseBuilder() {}
             @Override
             public NonSpecialise build() {
                 return new NonSpecialise(getName(), getMes());
