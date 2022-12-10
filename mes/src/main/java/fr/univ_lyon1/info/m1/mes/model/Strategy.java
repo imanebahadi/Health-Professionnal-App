@@ -1,9 +1,4 @@
 package fr.univ_lyon1.info.m1.mes.model;
-
-
-
-
-
 public abstract class Strategy {
     private final String label;
 

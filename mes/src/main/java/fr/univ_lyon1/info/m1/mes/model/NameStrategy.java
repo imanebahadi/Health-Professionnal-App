@@ -1,8 +1,6 @@
 package fr.univ_lyon1.info.m1.mes.model;
 
-
 public class NameStrategy extends Strategy {
-
     public NameStrategy(final String label) {
         super(label);
     }

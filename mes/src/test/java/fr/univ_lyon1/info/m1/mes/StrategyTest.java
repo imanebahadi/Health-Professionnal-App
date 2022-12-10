@@ -20,10 +20,6 @@ class StrategyTest {
     @BeforeAll
     static void setUp(){
         mes = new MES();
-        /*  mes.createPatient("alice","1876");
-        mes.createPatient("pierre", "1790");
-        mes.createPatient("tom", "1098");*/
-
         PatientBuilder pb = new PatientBuilder("alice","1876");
         pb.build();
         PatientBuilder pb2 = new PatientBuilder("pierre","1790");
@@ -38,7 +34,6 @@ class StrategyTest {
         //WHEN
         strategy = new SSIDStrategy("By SSID");
         Patient patient = strategy.findPatient(mes,"1098");
-
         // THEN
         assertThat( patient.getSSID(),is("1098"));
     }

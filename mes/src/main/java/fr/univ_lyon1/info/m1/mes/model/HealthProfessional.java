@@ -49,6 +49,11 @@ public class HealthProfessional {
 
         public HealthProfessionalBuilder() { }
 
+        public HealthProfessionalBuilder(final String name, final MES mes) {
+            this.name = name;
+            this.mes = mes;
+        }
+
         public T name(final String name) {
             this.name = name;
             return (T) this;

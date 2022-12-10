@@ -45,7 +45,6 @@ public class Controller {
     }
 
     public Patient addPatient(final String name, final String ssID) {
-        //Patient patient = this.mes.createPatient(name, ssID);
         PatientBuilder pb = new PatientBuilder(name, ssID);
         Patient patient = pb.build();
 
@@ -94,7 +93,6 @@ public class Controller {
     public Message addMessage(final String message) {
         Message msg = new Message(message);
         msg.addMessage(message);
-        System.out.println("msg list " + msg.getMessages());
         return msg;
     }
 

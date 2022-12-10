@@ -15,7 +15,9 @@ public interface PrescriptionObservable {
      */
     void unregister(PrescriptionObserver obj);
 
-    //method to notify observers of change
+    /**
+     * Notify observers of change
+     */
     void notifyObservers();
 
 
