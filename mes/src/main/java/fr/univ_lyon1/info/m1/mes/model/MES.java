@@ -11,7 +11,10 @@ public class MES {
     private static final List<HealthProfessional> HEALTHPROFESSIONALS = new ArrayList<>();
     private static final  Map<String, Patient> REGISTRY = new HashMap<>();
 
-    public Patient getPatient(final String ssID) { return REGISTRY.get(ssID); }
+    public Patient getPatient(final String ssID) {
+        return REGISTRY.get(ssID);
+    }
+
     public Map<String, Patient> getRegistry() {
         return REGISTRY;
     }

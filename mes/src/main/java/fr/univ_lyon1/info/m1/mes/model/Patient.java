@@ -53,7 +53,9 @@ public class Patient implements PrescriptionObservable {
     }
 
     @Override
-    public void unregister(final PrescriptionObserver observer) { prescriptionObserverList.remove(observer); }
+    public void unregister(final PrescriptionObserver observer) {
+        prescriptionObserverList.remove(observer);
+    }
 
     @Override
     public void notifyObservers() {

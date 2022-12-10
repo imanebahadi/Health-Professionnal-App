@@ -69,9 +69,7 @@ public class MessageView {
                 boxSender.setAlignment(Pos.CENTER_RIGHT);
                 root.getChildren().addAll(boxSender);
                 i++;
-            }
-
-            else if (i == 1) {
+            } else if (i == 1) {
                 Message msg = controller.addMessage(messageT.getText());
                 String n = controller.getMessageFromPatient(msg);
                 final Label msgT = new Label(n);
