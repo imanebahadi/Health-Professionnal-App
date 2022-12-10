@@ -29,13 +29,15 @@ class ControllerTest {
         controller = null;
     }
 
-    /*@Test
+    @Test
     void getListPatients() {
         Patient patient1 = new Patient.PatientBuilder("alice", "1234").build();
         Patient patient2 = new Patient.PatientBuilder("Bob", "1678").build();
+        for (Patient p : controller.getListPatients()) System.out.println(p.getName());
         assertThat(controller.getListPatients(),
-                containsInAnyOrder(Arrays.asList(patient1, patient2).toArray()));
-    }*/
+                hasItems(patient1,patient2));
+    }
+    //containsInAnyOrder(Arrays.asList(patient1, patient2).toArray()));
 
     @Test
     void addPatient() {
