@@ -71,8 +71,8 @@ public class MessageView {
                 i++;
             } else if (i == 1) {
                 Message msg = controller.addMessage(messageT.getText());
-                String n = controller.getMessageFromPatient(msg);
-                final Label msgT = new Label(n);
+                String textFromPatient = controller.getMessageFromPatient(msg);
+                final Label msgT = new Label(textFromPatient);
                 msgT.setStyle("-fx-border-color: blue;\n"
                         + "-fx-border-insets: 5;\n"
                         + "-fx-padding: 5;\n"

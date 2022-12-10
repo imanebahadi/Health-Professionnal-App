@@ -47,7 +47,7 @@ public class HealthProfessionalView implements PrescriptionObserver {
         final Label l = new Label(hp.getName());
         final HBox strategy = new HBox();
         final Label s = new Label("Strategy: ");
-        final Button message = new Button("\uD83D\uDCE9"); //MODIF📩
+        final Button message = new Button("\uD83D\uDCE9"); //📩
         final ComboBox cb;
         cb = new ComboBox();
         ObservableList<Strategy> listStrategy =
