@@ -19,7 +19,7 @@ class PatientTest {
 
     @BeforeAll
     static void setUp() {
-        //GIVEN
+        // creation des ressources
     mes = new MES();
     hp = new HealthProfessional("Smith",mes);
     patient = new PatientBuilder("alice","1234").build();

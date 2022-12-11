@@ -18,6 +18,7 @@ class ControllerTest {
 
     @BeforeEach
     void setUp() {
+        // creations des ressources
         mes = new MES();
         controller = new Controller(mes);
     }
@@ -33,11 +34,10 @@ class ControllerTest {
     void getListPatients() {
         Patient patient1 = new Patient.PatientBuilder("alice", "1234").build();
         Patient patient2 = new Patient.PatientBuilder("Bob", "1678").build();
-        for (Patient p : controller.getListPatients()) System.out.println(p.getName());
         assertThat(controller.getListPatients(),
                 hasItems(patient1,patient2));
     }
-    //containsInAnyOrder(Arrays.asList(patient1, patient2).toArray()));
+
 
     @Test
     void addPatient() {
