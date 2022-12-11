@@ -1,28 +1,23 @@
 package fr.univ_lyon1.info.m1.mes;
 
-import static org.hamcrest.Matchers.*;
-
-import java.util.List;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.jupiter.api.Test;
-
 import fr.univ_lyon1.info.m1.mes.model.HealthProfessional;
 import fr.univ_lyon1.info.m1.mes.model.MES;
 import fr.univ_lyon1.info.m1.mes.model.Patient;
 import fr.univ_lyon1.info.m1.mes.model.Patient.PatientBuilder;
 import fr.univ_lyon1.info.m1.mes.model.Prescription;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
 
 public class HealthProTest {
 
     MES model = new MES();
 
     @Test
-    /**
-     * A simple test, purposely broken so that students can see what happens for
-     * test failures.
-     */
+
     public void HealthProfessionalName() {
         // Given
         HealthProfessional hp = new HealthProfessional("Dr. Smith", model);
@@ -31,7 +26,7 @@ public class HealthProTest {
         String name = hp.getName();
 
         // Then
-        assertThat(name, is("Dr. Smith")); // TODO: Obviously wrong, it should be Smith
+        assertThat(name, is("Dr. Smith"));
     }
 
     @Test
